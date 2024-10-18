@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Test Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protection</title>
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var correctPassword = "123"; // Set your password here
+            
+            if (password === correctPassword) {
+                document.getElementById("protectedContent").style.display = "block";
+                document.getElementById("passwordForm").style.display = "none";
+            } else {
+                alert("Incorrect code. Please wait 30 seconds before retrying.");
+                document.getElementById("passwordForm").style.display = "none"; // Hide form during delay
+                setTimeout(function() {
+                    document.getElementById("passwordForm").style.display = "block"; // Show form again after delay
+                    document.getElementById("password").value = ""; // Clear the input
+                }, 30000); // 30 seconds delay for retry
+            }
+        }
+    </script>
+    <style>
+        #protectedContent {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, GitHub Pages!</h1>
-    <p>This is a test page hosted on GitHub Pages.</p>
+    <h2>Welcome on my webpage!</h2>
+    
+    <div id="passwordForm">
+        <label for="password">Enter code:</label>
+        <input type="password" id="password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="protectedContent">
+        <h3>Protected Content</h3>
+<p>
+
+<!Congratulations! You have entered the correct password and can now view this content.>
+Hello World!
+
+</p>
+    </div>
 </body>
 </html>
